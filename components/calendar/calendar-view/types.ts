@@ -21,11 +21,10 @@ export interface BodyProps {
 export interface DayProps {
   n: number;
   highlighted?: boolean;
-  withDot: boolean;
+  reservation: Reservation | undefined;
   onClick: () => void;
 }
 
-export interface DialogProps
-  extends React.ComponentPropsWithoutRef<typeof DialogContent> {
+export interface DialogProps {
   reservation: Reservation | undefined;
 }

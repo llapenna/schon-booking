@@ -19,6 +19,8 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
   };
 
   const reservedDays = reservations.map((r) => r.date);
+  const reservation = (date: string) =>
+    reservations.find((r) => r.date === date);
 
   return (
     <div>
@@ -33,7 +35,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
             key={d.format("YYYY-MM-DD")}
             n={d.date()}
             onClick={handleDayClick(d)}
-            withDot={reservedDays.includes(d.format("YYYY-MM-DD"))}
+            reservation={reservation(d.format("YYYY-MM-DD"))}
           ></Day>
         ))}
 
@@ -42,7 +44,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
             key={d.format("YYYY-MM-DD")}
             n={d.date()}
             onClick={handleDayClick(d)}
-            withDot={reservedDays.includes(d.format("YYYY-MM-DD"))}
+            reservation={reservation(d.format("YYYY-MM-DD"))}
             highlighted
           ></Day>
         ))}
@@ -52,7 +54,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
             key={d.format("YYYY-MM-DD")}
             n={d.date()}
             onClick={handleDayClick(d)}
-            withDot={reservedDays.includes(d.format("YYYY-MM-DD"))}
+            reservation={reservation(d.format("YYYY-MM-DD"))}
           ></Day>
         ))}
       </div>
