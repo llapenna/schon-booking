@@ -1,4 +1,5 @@
 import { Reservation } from "@/app/page";
+import { DialogContent } from "@/components/ui";
 import { Dayjs } from "dayjs";
 
 export interface CalendarViewProps {
@@ -13,9 +14,18 @@ export interface TitleProps {
 
 export interface BodyProps {
   month: Dayjs;
+  reservations: Reservation[];
+  setOpenedDay: (date: string) => void;
 }
 
 export interface DayProps {
-  highlighted?: boolean;
   n: number;
+  highlighted?: boolean;
+  withDot: boolean;
+  onClick: () => void;
+}
+
+export interface DialogProps
+  extends React.ComponentPropsWithoutRef<typeof DialogContent> {
+  reservation: Reservation | undefined;
 }
