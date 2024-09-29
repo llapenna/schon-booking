@@ -22,6 +22,7 @@ export const Drawer = ({ reservation }: DialogProps) => {
       {/* BODY */}
       <div className="px-4">
         <Combobox
+          defaultValues={reservation?.people}
           options={[
             {
               value: "lucho",
