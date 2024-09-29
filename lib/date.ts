@@ -3,4 +3,4 @@ import localeData from "dayjs/plugin/localeData";
 
 dayjs.extend(localeData);
 
-export const WEEKDAYS = dayjs.localeData().weekdays();
+export const WEEKDAYS = dayjs.localeData().weekdaysShort();

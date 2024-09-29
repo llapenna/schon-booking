@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui";
+import { WEEKDAYS } from "@/lib/date";
 
 export const Body = ({ month }: BodyProps) => {
   const offset = month.startOf("month").day();
@@ -24,6 +25,11 @@ export const Body = ({ month }: BodyProps) => {
 
   return (
     <Dialog>
+      <div className="grid grid-cols-7 justify-items-center">
+        {WEEKDAYS.map((day) => (
+          <span key={day}>{day}</span>
+        ))}
+      </div>
       <div className={`grid grid-cols-7 ${rows} gap-2`}>
         {nArray(offset)
           .reverse()
