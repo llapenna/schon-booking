@@ -11,10 +11,12 @@ import {
   DrawerHeader,
   DrawerTitle,
   Combobox,
+  DialogClose,
 } from "@/components/ui";
 import { usePeople, useReservations } from "@/components/context/data";
 
 import { DialogProps } from "./types";
+import { TrashIcon } from "lucide-react";
 
 export const Drawer = ({ editingDay }: DialogProps) => {
   const people = usePeople();
@@ -49,6 +51,10 @@ export const Drawer = ({ editingDay }: DialogProps) => {
     }
   };
 
+  const deleteReservation = () => {
+    fetch(`/reservation/${reservation!.id}`, { method: "DELETE" });
+  };
+
   return (
     <DrawerContent>
       <DrawerHeader>
@@ -56,12 +62,19 @@ export const Drawer = ({ editingDay }: DialogProps) => {
       </DrawerHeader>
 
       {/* BODY */}
-      <div className="px-4">
+      <div className="px-4 flex flex-row gap-2">
         <Combobox
           defaultValues={reservation?.people.map((p) => String(p.id))}
           options={peopleList}
           onSelect={(values) => setSelectedPeople(values)}
         />
+        {reservation && (
+          <DialogClose asChild>
+            <Button size="icon" variant="outline" onClick={deleteReservation}>
+              <TrashIcon size={16} className="text-red-600" />
+            </Button>
+          </DialogClose>
+        )}
       </div>
 
       <DrawerFooter>
