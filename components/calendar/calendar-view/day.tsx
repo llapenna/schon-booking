@@ -1,10 +1,12 @@
-import { Button, DialogTrigger } from "@/components/ui";
-import { DayProps } from "./types";
 import {
+  Button,
+  DrawerTrigger,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card";
+} from "@/components/ui";
+
+import { DayProps } from "./types";
 
 export const Day = ({
   n,
@@ -27,12 +29,13 @@ export const Day = ({
         )}
       </HoverCardContent>
 
-      <DialogTrigger asChild>
-        <HoverCardTrigger asChild>
+      {/* FIXME: when you open  */}
+      <HoverCardTrigger asChild>
+        <DrawerTrigger asChild>
           <Button
             onClick={onClick}
             variant={highlighted ? "outline" : "ghost"}
-            className="relative"
+            className="relative select-none"
           >
             {n}
             {withDot && (
@@ -41,8 +44,8 @@ export const Day = ({
               ></div>
             )}
           </Button>
-        </HoverCardTrigger>
-      </DialogTrigger>
+        </DrawerTrigger>
+      </HoverCardTrigger>
     </HoverCard>
   );
 };

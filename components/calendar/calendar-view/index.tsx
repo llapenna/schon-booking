@@ -3,11 +3,11 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 
-import { Dialog as DialogWrapper } from "@/components/ui";
+import { Drawer as DrawerWrapper } from "@/components/ui/drawer";
 
 import { Title } from "./title";
 import { Body } from "./body";
-import { Dialog } from "./dialog";
+import { Drawer } from "./drawer";
 import { CalendarViewProps } from "./types";
 
 export const CalendarView = ({ reservations }: CalendarViewProps) => {
@@ -33,7 +33,7 @@ export const CalendarView = ({ reservations }: CalendarViewProps) => {
   };
 
   return (
-    <DialogWrapper onOpenChange={(open) => console.log(open)}>
+    <DrawerWrapper>
       <div className="flex flex-col gap-2">
         <Title
           month={month}
@@ -46,7 +46,7 @@ export const CalendarView = ({ reservations }: CalendarViewProps) => {
           setOpenedDay={setOpenedDay}
         />
       </div>
-      <Dialog key={openedDay} reservation={editingReservation} />
-    </DialogWrapper>
+      <Drawer key={openedDay} reservation={editingReservation} />
+    </DrawerWrapper>
   );
 };
