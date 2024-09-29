@@ -15,9 +15,6 @@ export const CalendarView = ({ reservations }: CalendarViewProps) => {
   const [year, setYear] = useState<number>(dayjs().year());
 
   const [openedDay, setOpenedDay] = useState("");
-  const editingReservation = reservations.find(
-    (reservation) => reservation.date === openedDay
-  );
 
   const month = dayjs().year(year).month(monthNumber);
 
@@ -46,7 +43,7 @@ export const CalendarView = ({ reservations }: CalendarViewProps) => {
           setOpenedDay={setOpenedDay}
         />
       </div>
-      <Drawer key={openedDay} reservation={editingReservation} />
+      <Drawer key={openedDay} editingDay={openedDay} />
     </DrawerWrapper>
   );
 };

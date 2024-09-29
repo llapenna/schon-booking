@@ -19,9 +19,8 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
     setOpenedDay(day.format("YYYY-MM-DD"));
   };
 
-  const reservedDays = reservations.map((r) => r.date);
   const reservation = (date: string) =>
-    reservations.find((r) => r.date === date);
+    reservations.find((r) => dayjs(r.date).format("YYYY-MM-DD") === date);
 
   return (
     <div>
