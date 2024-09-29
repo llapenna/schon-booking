@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import dayjs from "dayjs";
+import { dayjs } from "@/lib/date";
 
 import { Drawer as DrawerWrapper } from "@/components/ui/drawer";
 

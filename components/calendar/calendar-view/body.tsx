@@ -1,7 +1,8 @@
+import { WEEKDAYS, dayjs } from "@/lib/date";
+import { Dayjs } from "dayjs";
+
 import { BodyProps } from "./types";
 import { Day } from "./day";
-import { WEEKDAYS } from "@/lib/date";
-import { Dayjs } from "dayjs";
 import { getDays, getLeftBalancetDays, getRightBalanceDays } from "./util/days";
 
 export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {

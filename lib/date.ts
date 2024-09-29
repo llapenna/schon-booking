@@ -1,6 +1,10 @@
-import dayjs from "dayjs";
+import _dayjs from "dayjs";
 import localeData from "dayjs/plugin/localeData";
+import utc from "dayjs/plugin/utc";
 
-dayjs.extend(localeData);
+_dayjs.extend(localeData);
+_dayjs.extend(utc);
 
-export const WEEKDAYS = dayjs.localeData().weekdaysShort();
+export const dayjs = _dayjs.utc;
+
+export const WEEKDAYS = _dayjs.localeData().weekdaysShort();
