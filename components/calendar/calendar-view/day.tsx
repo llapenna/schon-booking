@@ -20,7 +20,7 @@ export const Day = ({
       <HoverCardContent>
         {reservation ? (
           <p>
-            <b>{reservation.persons.length}</b> people reserved this day.
+            <b>{reservation.people.length}</b> people reserved this day.
           </p>
         ) : (
           <p>No reservations</p>

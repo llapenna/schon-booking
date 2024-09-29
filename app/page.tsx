@@ -4,24 +4,24 @@ export const dynamic = "force-dynamic";
 
 export interface Reservation {
   id: string;
-  persons: string[];
+  people: string[];
   date: string;
 }
 
 const DATA: Reservation[] = [
   {
     id: "1",
-    persons: ["Alice", "Bob"],
+    people: ["Alice", "Bob"],
     date: "2024-09-23",
   },
   {
     id: "2",
-    persons: ["Alice", "David"],
+    people: ["Alice", "David"],
     date: "2024-10-02",
   },
   {
     id: "3",
-    persons: ["Eve"],
+    people: ["Eve"],
     date: "2024-10-21",
   },
 ];
