@@ -1,4 +1,9 @@
+import { Reservation } from "@/app/page";
 import { Dayjs } from "dayjs";
+
+export interface CalendarViewProps {
+  reservations: Reservation[];
+}
 
 export interface TitleProps {
   month: Dayjs;

@@ -5,8 +5,9 @@ import { useState } from "react";
 import { Title } from "./title";
 import dayjs from "dayjs";
 import { Body } from "./body";
+import { CalendarViewProps } from "./types";
 
-export const CalendarView = () => {
+export const CalendarView = ({ reservations }: CalendarViewProps) => {
   const [monthNumber, setMonthNumber] = useState<number>(dayjs().month());
   const [year, setYear] = useState<number>(dayjs().year());
 
