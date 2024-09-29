@@ -23,12 +23,14 @@ interface ComboboxProps {
   placeholder?: string;
   options: { value: string; label: string }[];
   defaultValues?: string[];
+  onSelect?: (values: string[]) => void;
 }
 
 export function Combobox({
   placeholder,
   options,
   defaultValues = [],
+  onSelect,
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState<string[]>(defaultValues);
@@ -36,11 +38,12 @@ export function Combobox({
   const placeholderText = placeholder || "Select...";
 
   const handleValueSelect = (value: string) => {
-    if (values.includes(value)) {
-      setValues(values.filter((v) => v !== value));
-    } else {
-      setValues([...values, value]);
-    }
+    const newValues = values.includes(value)
+      ? values.filter((v) => v !== value)
+      : [...values, value];
+
+    onSelect?.(newValues);
+    setValues(newValues);
   };
 
   return (
