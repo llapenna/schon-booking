@@ -22,11 +22,16 @@ import {
 interface ComboboxProps {
   placeholder?: string;
   options: { value: string; label: string }[];
+  defaultValues?: string[];
 }
 
-export function Combobox({ placeholder, options }: ComboboxProps) {
+export function Combobox({
+  placeholder,
+  options,
+  defaultValues = [],
+}: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
-  const [values, setValues] = React.useState<string[]>([]);
+  const [values, setValues] = React.useState<string[]>(defaultValues);
 
   const placeholderText = placeholder || "Select...";
 
