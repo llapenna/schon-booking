@@ -8,7 +8,6 @@ export async function PUT(
   const body = await req.json();
 
   const { id } = params;
-  const date = new Date(body.date);
   const notes = body.notes as string;
   const people = body.people as number[];
 
@@ -16,7 +15,6 @@ export async function PUT(
     const user = await prisma.reservation.update({
       where: { id: Number(id) },
       data: {
-        date,
         notes,
         people: {
           connect: people.map((id) => ({ id })),
@@ -26,6 +24,7 @@ export async function PUT(
 
     return NextResponse.json({ user }, { status: 201 });
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error }, { status: 500 });
   }
 }
@@ -42,6 +41,7 @@ export async function DELETE(
     });
     return NextResponse.json({ status: 204 });
   } catch (error) {
+    console.error(error);
     return NextResponse.json({ error }, { status: 500 });
   }
 }
