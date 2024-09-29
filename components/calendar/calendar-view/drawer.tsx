@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   Combobox,
   DialogClose,
+  Textarea,
 } from "@/components/ui";
 import { usePeople, useReservations } from "@/components/context/data";
 
@@ -21,10 +22,13 @@ import { TrashIcon } from "lucide-react";
 export const Drawer = ({ editingDay }: DialogProps) => {
   const people = usePeople();
   const reservations = useReservations();
-
-  const [selectedPeople, setSelectedPeople] = useState<string[]>([]);
   const reservation = reservations.find(
     (r) => dayjs(r.date).format("YYYY-MM-DD") === editingDay
+  );
+
+  const [notes, setNotes] = useState(reservation?.notes ?? "");
+  const [selectedPeople, setSelectedPeople] = useState<string[]>(
+    (reservation?.people ?? []).map((p) => String(p.id))
   );
 
   const peopleList = people.map((p) => ({
@@ -38,6 +42,7 @@ export const Drawer = ({ editingDay }: DialogProps) => {
         method: "PUT",
         body: JSON.stringify({
           people: selectedPeople,
+          notes,
         }),
       });
     } else {
@@ -46,6 +51,7 @@ export const Drawer = ({ editingDay }: DialogProps) => {
         body: JSON.stringify({
           people: selectedPeople,
           date: editingDay,
+          notes,
         }),
       });
     }
@@ -62,19 +68,26 @@ export const Drawer = ({ editingDay }: DialogProps) => {
       </DrawerHeader>
 
       {/* BODY */}
-      <div className="px-4 flex flex-row gap-2">
-        <Combobox
-          defaultValues={reservation?.people.map((p) => String(p.id))}
-          options={peopleList}
-          onSelect={(values) => setSelectedPeople(values)}
-        />
-        {reservation && (
-          <DialogClose asChild>
-            <Button size="icon" variant="outline" onClick={deleteReservation}>
-              <TrashIcon size={16} className="text-red-600" />
-            </Button>
-          </DialogClose>
-        )}
+      <div className="px-4 flex flex-col gap-2">
+        <div className="flex flex-row gap-2">
+          <Combobox
+            defaultValues={reservation?.people.map((p) => String(p.id))}
+            options={peopleList}
+            onSelect={(values) => setSelectedPeople(values)}
+          />
+          {reservation && (
+            <DialogClose asChild>
+              <Button size="icon" variant="outline" onClick={deleteReservation}>
+                <TrashIcon size={16} className="text-red-600" />
+              </Button>
+            </DialogClose>
+          )}
+        </div>
+        <Textarea
+          placeholder="Notes... (optional)"
+          onChange={(e) => setNotes(e.target.value)}
+          value={notes}
+        ></Textarea>
       </div>
 
       <DrawerFooter>
@@ -82,7 +95,9 @@ export const Drawer = ({ editingDay }: DialogProps) => {
           <Button variant="secondary">Cancel</Button>
         </DrawerClose>
         <DrawerClose asChild>
-          <Button onClick={handleSubmit}>Save</Button>
+          <Button onClick={handleSubmit} disabled={!selectedPeople.length}>
+            Save
+          </Button>
         </DrawerClose>
       </DrawerFooter>
     </DrawerContent>

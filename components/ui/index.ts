@@ -7,3 +7,4 @@ export * from "./combobox";
 export * from "./label";
 export * from "./input";
 export * from "./drop-area";
+export * from "./textarea";
