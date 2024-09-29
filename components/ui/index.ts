@@ -4,3 +4,6 @@ export * from "./dialog";
 export * from "./drawer";
 export * from "./hover-card";
 export * from "./combobox";
+export * from "./label";
+export * from "./input";
+export * from "./drop-area";
