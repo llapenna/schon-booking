@@ -1,9 +1,8 @@
-import { Reservation } from "@/app/page";
-import { DialogContent } from "@/components/ui";
+import { ReservationWithPeople } from "@/types/reservation";
 import { Dayjs } from "dayjs";
 
 export interface CalendarViewProps {
-  reservations: Reservation[];
+  reservations: ReservationWithPeople[];
 }
 
 export interface TitleProps {
@@ -14,17 +13,17 @@ export interface TitleProps {
 
 export interface BodyProps {
   month: Dayjs;
-  reservations: Reservation[];
+  reservations: ReservationWithPeople[];
   setOpenedDay: (date: string) => void;
 }
 
 export interface DayProps {
   n: number;
   highlighted?: boolean;
-  reservation: Reservation | undefined;
+  reservation: ReservationWithPeople | undefined;
   onClick: () => void;
 }
 
 export interface DialogProps {
-  reservation: Reservation | undefined;
+  editingDay: string;
 }
