@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   const people = body.people as string[];
 
   try {
-    const user = await prisma.reservation.create({
+    const reservation = await prisma.reservation.create({
       data: {
         date,
         notes,
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ user }, { status: 201 });
+    return NextResponse.json({ reservation }, { status: 201 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error }, { status: 500 });
