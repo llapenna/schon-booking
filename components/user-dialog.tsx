@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/dialog";
 import { UserPlusIcon } from "lucide-react";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import { Button, Input, DropArea, Label } from "./ui";
 
 export const UserDialog = () => {
-  const [isFileUploading, setIsFileUploading] = useState(false);
+  const router = useRouter();
 
+  const [isFileUploading, setIsFileUploading] = useState(false);
   const [name, setName] = useState("");
   const [fileId, setFileId] = useState<string | null>(null);
 
@@ -30,7 +31,10 @@ export const UserDialog = () => {
       body: form,
     })
       .then((response) => response.json())
-      .then((data) => setFileId(data.id))
+      .then((data) => {
+        setFileId(data.id);
+        router.refresh();
+      })
       .catch(console.error)
       .finally(() => setIsFileUploading(false));
   };
@@ -39,7 +43,7 @@ export const UserDialog = () => {
     fetch("/user", {
       method: "POST",
       body: JSON.stringify({ name, fileId }),
-    });
+    }).then(() => router.refresh());
   };
 
   return (

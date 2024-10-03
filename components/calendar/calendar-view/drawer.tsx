@@ -2,6 +2,7 @@
 
 import { dayjs } from "@/lib/date";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Button,
@@ -20,6 +21,8 @@ import { DialogProps } from "./types";
 import { TrashIcon } from "lucide-react";
 
 export const Drawer = ({ editingDay }: DialogProps) => {
+  const router = useRouter();
+
   const people = usePeople();
   const reservations = useReservations();
   const reservation = reservations.find(
@@ -44,7 +47,7 @@ export const Drawer = ({ editingDay }: DialogProps) => {
           people: selectedPeople,
           notes,
         }),
-      });
+      }).then(() => router.refresh());
     } else {
       fetch("/reservation", {
         method: "POST",
@@ -53,12 +56,14 @@ export const Drawer = ({ editingDay }: DialogProps) => {
           date: editingDay,
           notes,
         }),
-      });
+      }).then(() => router.refresh());
     }
   };
 
   const deleteReservation = () => {
-    fetch(`/reservation/${reservation!.id}`, { method: "DELETE" });
+    fetch(`/reservation/${reservation!.id}`, { method: "DELETE" }).then(() =>
+      router.refresh()
+    );
   };
 
   return (
