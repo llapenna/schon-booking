@@ -15,15 +15,23 @@ export default async function Home() {
 
   return (
     <DataProvider people={people} reservations={reservations}>
-      <main>
+      <main className="relative w-screen h-screen flex flex-col">
         <nav className="flex flex-row justify-end p-2">
           <UserDialog />
         </nav>
-        <div className="p-6 w-screen h-screen flex flex-col gap-4 items-center justify-center">
+        <div className="p-6 flex-1 flex flex-col items-center justify-center">
           <h1>Schön Booking</h1>
           <CalendarView reservations={reservations}></CalendarView>
         </div>
       </main>
+      <div className="absolute flex flex-row justify-center items-center w-full bottom-4">
+        <p>
+          Made with ❤️ by{" "}
+          <a className="underline" href="https://github.com/llapenna">
+            Lucho
+          </a>
+        </p>
+      </div>
     </DataProvider>
   );
 }
