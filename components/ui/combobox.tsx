@@ -19,9 +19,30 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+export interface ProfilePictureProps {
+  src: string | undefined;
+  name: string;
+}
+const ProfilePicture = ({ src, name }: ProfilePictureProps) => {
+  if (src)
+    return (
+      <img
+        className="h-6 w-6 rounded-full"
+        src={`/users/${src}.png`}
+        alt={`${name}'s photo`}
+      />
+    );
+  else
+    return (
+      <div className="h-6 w-6 bg-gray-300 rounded-full flex items-center justify-center text-gray-500">
+        {name[0]}
+      </div>
+    );
+};
+
 interface ComboboxProps {
   placeholder?: string;
-  options: { value: string; label: string }[];
+  options: { value: string; label: string; img?: string }[];
   defaultValues?: string[];
   onSelect?: (values: string[]) => void;
 }
@@ -77,7 +98,10 @@ export function Combobox({
                       values.includes(o.value) ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {o.label}
+                  <div className="flex flex-row gap-1 items-center">
+                    <ProfilePicture name={o.label} src={o.img} />
+                    {o.label}
+                  </div>
                 </CommandItem>
               ))}
             </CommandGroup>

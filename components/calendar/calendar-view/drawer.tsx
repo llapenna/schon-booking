@@ -37,6 +37,7 @@ export const Drawer = ({ editingDay }: DialogProps) => {
   const peopleList = people.map((p) => ({
     value: String(p.id),
     label: p.name,
+    img: p.photo,
   }));
 
   const handleSubmit = () => {
