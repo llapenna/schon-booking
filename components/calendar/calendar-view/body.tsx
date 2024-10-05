@@ -33,7 +33,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
         {getLeftBalancetDays(leftBalance, month).map((d) => (
           <Day
             key={d.format("YYYY-MM-DD")}
-            n={d.date()}
+            date={d}
             onClick={handleDayClick(d)}
             reservation={reservation(d.format("YYYY-MM-DD"))}
           ></Day>
@@ -42,7 +42,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
         {getDays(daysAmount, month).map((d) => (
           <Day
             key={d.format("YYYY-MM-DD")}
-            n={d.date()}
+            date={d}
             onClick={handleDayClick(d)}
             reservation={reservation(d.format("YYYY-MM-DD"))}
             highlighted
@@ -52,7 +52,7 @@ export const Body = ({ month, setOpenedDay, reservations }: BodyProps) => {
         {getRightBalanceDays(rightBalance, month).map((d) => (
           <Day
             key={d.format("YYYY-MM-DD")}
-            n={d.date()}
+            date={d}
             onClick={handleDayClick(d)}
             reservation={reservation(d.format("YYYY-MM-DD"))}
           ></Day>

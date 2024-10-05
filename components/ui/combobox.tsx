@@ -42,7 +42,7 @@ const ProfilePicture = ({ src, name }: ProfilePictureProps) => {
 
 interface ComboboxProps {
   placeholder?: string;
-  options: { value: string; label: string; img?: string }[];
+  options: { value: string; label: string; img?: string | null }[];
   defaultValues?: string[];
   onSelect?: (values: string[]) => void;
 }

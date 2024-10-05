@@ -18,9 +18,9 @@ export interface BodyProps {
 }
 
 export interface DayProps {
-  n: number;
-  highlighted?: boolean;
+  date: Dayjs;
   reservation: ReservationWithPeople | undefined;
+  highlighted?: boolean;
   onClick: () => void;
 }
 
