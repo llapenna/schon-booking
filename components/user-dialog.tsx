@@ -82,7 +82,9 @@ export const UserDialog = () => {
             <Button variant="secondary">Cancel</Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button onClick={createUser}>Save</Button>
+            <Button onClick={createUser} disabled={!name}>
+              Save
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
