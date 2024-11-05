@@ -18,27 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-export interface ProfilePictureProps {
-  src: string | undefined;
-  name: string;
-}
-const ProfilePicture = ({ src, name }: ProfilePictureProps) => {
-  if (src)
-    return (
-      <img
-        className="h-6 w-6 rounded-full"
-        src={`/users/${src}.png`}
-        alt={`${name}'s photo`}
-      />
-    );
-  else
-    return (
-      <div className="h-6 w-6 bg-gray-300 rounded-full flex items-center justify-center text-gray-500">
-        {name[0]}
-      </div>
-    );
-};
+import { UserImage } from "./user-image";
 
 interface ComboboxProps {
   placeholder?: string;
@@ -99,7 +79,7 @@ export function Combobox({
                     )}
                   />
                   <div className="flex flex-row gap-1 items-center">
-                    <ProfilePicture name={o.label} src={o.img} />
+                    <UserImage name={o.label} imageId={o.img} />
                     {o.label}
                   </div>
                 </CommandItem>
