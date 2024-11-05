@@ -71,6 +71,7 @@ export const UserDialog = () => {
           </div>
 
           <DropArea
+            accept=".png,.jpg,.jpeg"
             isLoading={isFileUploading}
             onFileChange={handleFileUpdate}
           ></DropArea>
