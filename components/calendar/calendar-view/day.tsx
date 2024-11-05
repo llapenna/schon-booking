@@ -9,6 +9,7 @@ import {
 import { DayProps } from "./types";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
+import { UserImage } from "@/components/ui/user-image";
 
 export const Day = ({
   date,
@@ -26,9 +27,20 @@ export const Day = ({
     <HoverCard>
       <HoverCardContent>
         {reservation ? (
-          <p>
-            <b>{reservation.people.length}</b> people reserved this day.
-          </p>
+          <div className="flex flex-row items-center gap-1">
+            {reservation.people.map((p) => (
+              <UserImage
+                key={p.id}
+                imageId={p.photo}
+                name={p.name}
+                // alt={p.name}
+                className="h-6 w-6 rounded-full -mr-4 last-of-type:mr-2"
+              />
+            ))}
+            <p>
+              <b>{reservation.people.length}</b> people reserved this day.
+            </p>
+          </div>
         ) : (
           <p>No reservations</p>
         )}

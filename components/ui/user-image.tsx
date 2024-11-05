@@ -24,15 +24,11 @@ export const UserImage = ({
   }
 
   return (
-    <picture>
-      <source srcSet={`${path}.jpeg`} type="image/jpeg"></source>
-      <source srcSet={`${path}.jpg`} type="image/jpg"></source>
-      <img
-        {...props}
-        src={`${path}.png`}
-        alt={`${name}'s picture`}
-        className={cx("h-6 w-6 rounded-full", className)}
-      />
-    </picture>
+    <img
+      {...props}
+      src={path}
+      alt={`${name}'s picture`}
+      className={cx("h-6 w-6 rounded-full", className)}
+    />
   );
 };
