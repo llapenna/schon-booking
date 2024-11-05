@@ -13,11 +13,10 @@ export async function POST(req: Request) {
 
   const buffer = Buffer.from(await image.arrayBuffer());
   const fileId = uuid();
-  const ext = path.extname(image.name);
 
   try {
     await writeFile(
-      path.join(process.cwd(), "public/users", `${fileId}${ext}`),
+      path.join(process.cwd(), "public/users", `${fileId}`),
       buffer
     );
     return NextResponse.json({ id: fileId }, { status: 201 });
