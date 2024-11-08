@@ -49,9 +49,11 @@ export const UserDialog = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="icon">
-          <UserPlusIcon size={16} />
-        </Button>
+        <div className="opacity-0">
+          <Button size="icon">
+            <UserPlusIcon size={16} />
+          </Button>
+        </div>
       </DialogTrigger>
 
       <DialogContent>
